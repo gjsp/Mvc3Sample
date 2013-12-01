@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<MvcMusicStore.Models.Genre>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+<h3>Browse Genres</h3>
+<p>
+    Select from @Model.Count()
+genres:</p>
+<ul>
+    @foreach (var genre in Model)
+    {
+        @*<li>@genre.Name</li>*@
+        
+        //หมายเหตุ : ในกรณีนี้คุณไม่จำเป็นต้องระบุคอนโทรล เพราะมันเป็นการเรียกภายในคอนโทรลเดียวกัน 
+        //รูปแบบนี้อาจจะนำปัญหามาให้ภายหลังเพราะมันเป็นรูปแบบสตริงที่เราทำการฮาร์ดโค๊ดเอาไว้ เช่นถ้าเราต้องการเปลี่ยนชื่อ Controller มันจะทำให้มีปัญหาการเรียกได้
+        //ดังนั้นทาง ASP.NET MVC ได้มีคำสั่ง HTML Helper เอาไว้สำหรับช่วยเหลือเรื่องเหล่านี้ 
+        @*<li><a href="/Store/Browse?genre=@genre.Name">@genre.Name</a></li>*@
+        
+        
+        <li>@Html.ActionLink( genre.Name ,"Browse", new { genre = genre.Name })</li>
+       
+    }
+</ul>
